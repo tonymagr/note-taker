@@ -1,3 +1,5 @@
+// Front end JS?
+
 let noteForm;
 let noteTitle;
 let noteText;
