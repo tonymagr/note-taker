@@ -1,4 +1,4 @@
-// Front end JS?
+// Note that both index.html and notes.html use <script> index.js.
 
 let noteForm;
 let noteTitle;
@@ -37,14 +37,22 @@ const getNotes = () =>
       'Content-Type': 'application/json'
     }
   });
-
-const saveNote = (note) =>
+  
+const saveNote = async (note) =>
   fetch('/api/notes', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(note)
+    body: JSON.stringify(note),
+  })
+  .then((res) => res.json())
+  .then((data) => {
+    console.log('Successful POST request:', data);
+    return data;
+  })
+  .catch((error) => {
+    console.error('Error in POST request:', error);
   });
 
 const deleteNote = (id) =>
@@ -56,6 +64,7 @@ const deleteNote = (id) =>
   });
 
 const renderActiveNote = () => {
+  console.log('activeNote', activeNote);
   hide(saveNoteBtn);
   hide(clearBtn);
 
@@ -79,6 +88,7 @@ const handleNoteSave = () => {
     title: noteTitle.value,
     text: noteText.value
   };
+  console.log('newNote', newNote);
   saveNote(newNote).then(() => {
     getAndRenderNotes();
     renderActiveNote();
@@ -107,6 +117,7 @@ const handleNoteDelete = (e) => {
 const handleNoteView = (e) => {
   e.preventDefault();
   activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
+  console.log('activeNote', activeNote);
   renderActiveNote();
 };
 
@@ -184,8 +195,10 @@ const renderNoteList = async (notes) => {
 };
 
 // Gets notes from the db and renders them to the sidebar
-const getAndRenderNotes = () => getNotes().then(renderNoteList);
-
+const getAndRenderNotes = () => {
+  getNotes().then(renderNoteList);
+};
+    
 if (window.location.pathname === '/notes') {
   saveNoteBtn.addEventListener('click', handleNoteSave);
   newNoteBtn.addEventListener('click', handleNewNoteView);
