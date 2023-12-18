@@ -3,11 +3,9 @@ const path = require('path');
 const fs = require('fs');
 const notesFile = require('./db/db.json');
 // const { uuidv4 } = require('uuidv4');
-const PORT = 3001;
+const PORT = 5001;
 
 const app = express();
-
-console.log('__dirname', __dirname);
 
 // Declare uuid utility function
 const uuid = () => {
