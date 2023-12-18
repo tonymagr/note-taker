@@ -38,17 +38,11 @@ In a browser:
     http://localhost:5001/
     See user instructions above.
 
-[Webpage Image]()
-
-[Demo Link](https://drive.google.com/file/d/15F4xnBTyBYSGpavrMsUESB5YyomiXGT0/view)
-
-[SVG Logo Maker result](./img/logo.svg.jpg)
-
+[Webpage Image](./public/webpage.jpg)
 
 ## Credits
 
-Function to validate the hexadecimal color_code, using Regex
-https://www.geeksforgeeks.org/javascript-check-if-a-string-is-a-valid-hex-color-representation/
+Not applicable
 
 ## License
 
