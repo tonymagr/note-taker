@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const notesFile = require('./db/db.json');
 // const { uuidv4 } = require('uuidv4');
-const PORT = 5001;
+// const PORT = 5001;  // Removed for Heroku
 
 const app = express();
 
@@ -95,6 +95,10 @@ app.delete('/api/notes/:id', (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Example app listening at http://localhost:${PORT}`);
+// app.listen(PORT, () => {
+//   console.log(`Example app listening at http://localhost:${PORT}`);
+// });
+
+app.listen(process.env.PORT || 5001, () => {
+  console.log(`Example app listening at http://localhost:PORT`);
 });
